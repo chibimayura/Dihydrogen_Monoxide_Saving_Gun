@@ -21,7 +21,7 @@ def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text):
 def getLoc():
     color = {"blue":(255,0,0), "red":(0,0,255), "green":(0,255,0), "white":(255,255,255)}
     coords = draw_boundary(img, mouthCascade, 3.5, 15, color['green'], "Spray Water Here")
-    thirds = 640/3
+    thirds = 600/3
 
     if(coords != []):
         x_pos = coords[0]
@@ -76,49 +76,50 @@ while True:
 
     cur_pos = getLoc()
 
-    # if(initial_mouth != end_mouth and getHeight()):
-    #     if(abs(initial_mouth - end_mouth) < 20 or abs(initial_mouth - end_mouth)> 60):
-    #         is_open = False
-    #         initial_mouth = end_mouth
-    #         if(is_open != mouth_pos):
-    #             mouth_pos = is_open
-    #             print(mouth_pos)
-    #             # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
-    #     else:
-    #         is_open = True
-    #         if(is_open != mouth_pos):
-    #             mouth_pos = is_open
-    #             print(mouth_pos)
-    #             # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
-
-    if(position != cur_pos or (initial_mouth != end_mouth and getHeight())):
+    if (position != cur_pos or (initial_mouth != end_mouth and getHeight())):
         position = cur_pos
-        if(position == 1 and loc != "right"):
+        if (position == 1 and loc != "right"):
             loc = "right"
-            print(loc, position)
+            print(loc, position, mouth_pos)
             # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
-        elif(position == 0 and loc != "center"):
+        elif (position == 0 and loc != "center"):
             loc = "center"
-            print(loc, position)
+            print(loc, position, mouth_pos)
             # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
-        elif(position == -1 and loc != "left"):
+        elif (position == -1 and loc != "left"):
             loc = "left"
-            print(loc, position)
+            print(loc, position, mouth_pos)
             # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
-            
-        if (getHeight() and abs(initial_mouth - end_mouth) < 20 or abs(initial_mouth - end_mouth) > 60):
+
+    if(initial_mouth != end_mouth and getHeight()):
+        if(abs(initial_mouth - end_mouth) < 20 or abs(initial_mouth - end_mouth)> 60):
             is_open = False
             initial_mouth = end_mouth
-            if (is_open != mouth_pos):
+            if(is_open != mouth_pos):
                 mouth_pos = is_open
-                print(mouth_pos)
+                print(loc, position, mouth_pos)
                 # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
         else:
             is_open = True
-            if (is_open != mouth_pos):
+            if(is_open != mouth_pos):
                 mouth_pos = is_open
-                print(mouth_pos)
+                print(loc, position, mouth_pos)
                 # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
+
+            
+        # if (getHeight() and abs(initial_mouth - end_mouth) < 20 or abs(initial_mouth - end_mouth) > 60):
+        #     is_open = False
+        #     initial_mouth = end_mouth
+        #     if (is_open != mouth_pos):
+        #         mouth_pos = is_open
+        #         print(mouth_pos)
+        #         # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
+        # else:
+        #     is_open = True
+        #     if (is_open != mouth_pos):
+        #         mouth_pos = is_open
+        #         print(mouth_pos)
+        #         # requests.post("http://172.31.32.74:3000/", data={"position": position, "location": loc, "is_open": mouth_pos})
 
 
     # Writing processed image in a new window
