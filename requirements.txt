@@ -1,0 +1,11 @@
+Flask==1.0.2
+Click==7.0
+itsdangerous==1.1.0
+Jinja2==2.10
+pip==19.0.3
+virtualenv==16.4.3
+opencv-python==4.0.0.21
+numpy==1.16.2
+Werkzeug==0.15.2
+requests==2.21.0
+MarkupSafe==1.1.1
